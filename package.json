@@ -1,6 +1,9 @@
 {
   "name": "onLink",
   "version": "0.5.1",
+  "engines": {
+    "node": "6.x"
+  },
   "description": "onLink",
   "main": "index.js",
   "scripts": {
