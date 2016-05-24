@@ -4,7 +4,7 @@ import {provide, enableProdMode} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
-import {App} from './app/app';
+import {App} from './app/components/app/app';
 
 
 //enableProdMode();

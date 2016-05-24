@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
-import {Config} from './config';
-import {TreeView} from './components/tree-view/tree-view';
-import {Home} from './components/home/home';
-import {Beef} from './components/beef/beef';
-import {Pork} from './components/pork/pork';
+import {Config} from 'app/config';
+import {TreeView} from '../tree-view/tree-view';
+import {Home} from '../home/home';
+import {Beef} from '../beef/beef';
+import {Pork} from '../pork/pork';
 
 @Component({
   selector: 'app',
@@ -13,10 +13,11 @@ import {Pork} from './components/pork/pork';
   pipes: [],
   directives: [ROUTER_DIRECTIVES, TreeView],
   template: require('./app.html'),
+  styles: [require('./app.css')]
 })
 
 @RouteConfig([
-  {path: '/', component: Home, name: 'Home', useAsDefault: true},
+  {path: '/', component: Home, name: 'Home' },
   {path: '/beef', component: Beef, name: 'Beef'},
   {path: '/pork', component: Pork, name: 'Pork'}
 ])
