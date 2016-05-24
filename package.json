@@ -1,0 +1,29 @@
+{
+  "name": "onLink",
+  "version": "0.5.1",
+  "description": "onLink",
+  "main": "index.js",
+  "scripts": {
+    "installClient":  "cd client && npm install",
+    "watchClient":    "cd client && npm run build -- --watch",
+    "buildClient":    "cd client && npm run build",
+
+    "installServer":  "cd server && npm install",
+    "watchServer":    "cd server && npm run watch",
+    "startServer":    "cd server && npm run start",
+
+    "postinstall":    "run-p installClient installServer",
+
+    "start":          "run-s buildClient startServer",
+    "dev":            "run-p watchClient watchServer",
+    "watch":          "run-p watchClient watchServer"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "zhenchao.chen",
+  "license": "ISC",
+  "dependencies": {
+    "npm-run-all": "^2.1.0"
+  }
+}

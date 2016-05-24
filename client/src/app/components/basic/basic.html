@@ -1,0 +1,5 @@
+<h4>(1)Test input from parent component</h4>
+Parent value got from parent component: {{value1}}
+<h4>(2)Test output to parent component</h4>
+Parent value got from parent component: {{value2}}
+<input type="text" #value2Input (keyup)="onValue2Change(value2Input.value)">

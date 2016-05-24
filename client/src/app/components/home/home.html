@@ -1,0 +1,5 @@
+<h3>Home Component</h3>
+<p>Welcome: {{user.firstName}}, your email is {{user.email}}</p>
+
+Value2 from child: {{value2}}
+<basic [parentValue]="'data'" (value2Emitter)="value2=$event"></basic>

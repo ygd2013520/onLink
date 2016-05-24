@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style>
+    body {
+      padding-top: 80px;
+      padding-bottom: 40px;
+      background-color: #FFFFFF;
+    }
+    .my-form {
+      max-width: 330px;
+      padding: 15px;
+      margin: 0 auto;
+    }
+    .my-form .checkbox {
+      margin-bottom: 10px;
+      max-width: 150px;
+      font-weight: normal;
+    }
+    .my-form .form-control {
+      position: relative;
+      height: auto;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .my-form .form-control:focus {
+      z-index: 2;
+    }
+    .my-form input[type="email"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .my-form input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .my-form .btn-login{
+      max-width: 145px;
+      padding: 5px;
+      margin: 0 auto;
+    }
+
+    .my-form .btn-signup{
+      padding: 5px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <form class="my-form" method="post">
+    <h4 class="my-form-heading">Log In</h4>
+    <% if (alert ) {%>
+    <div class="alert alert-warning">
+      <%- alert %>
+    </div>
+    <% }%>
+    <div class="form-group">
+      <label for="email" class="sr-only">Email Address:</label>
+      <input type="email" name="email"id="email" class="form-control" placeholder="Email address" required autofocus>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="sr-only">Password:</label>
+      <input type="password" name="password" id="password" class="form-control" placeholder="Password" >
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input class="remember-me" type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+
+    <button class="btn btn-md btn-primary btn-block btn-login pull-left" formaction="/login" type="submit">Login</button>
+    <a href="./forgetPass" class="btn btn-md btn-link pull-right">Forgot Password?</a>
+    <a href="./signup" class="btn btn-md btn-link btn-block btn-signup pull-left">Does not have an account? Register one now.</a>
+
+  </form>
+
+</div>
+
+</body>
+
+</html>
