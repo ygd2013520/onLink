@@ -14,12 +14,6 @@
     "start": "npm run server",
     "dev": "npm-run-all --parallel watch start"
   },
-  "devDependencies": {
-    "es6-promise": "3.0.2",
-    "es6-shim": "0.35.0",
-    "reflect-metadata": "0.1.2",
-    "webpack-dev-server": "^1.14.0"
-  },
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
     "@angular/compiler": "2.0.0-rc.1",
@@ -45,7 +39,7 @@
     "webpack-merge": "^0.8.4",
     "zone.js": "~0.6.12"
   },
-  "repository": {
-    "type": "git"
+  "devDependencies": {
+    "webpack-dev-server": "^1.14.0"
   }
 }
