@@ -18,6 +18,10 @@ function initConfig () {
     reconnectInterval: 3000                           //in ms
   };
 
+  if(process.env.MONGODB_URI) {
+    config.db.uri = process.env.MONGODB_URI;
+  }
+
   // files
   config.files = { };
   config.files.models = [
