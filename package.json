@@ -22,7 +22,6 @@
     "type": "git"
   },
   "author": "zhenchao.chen",
-  "license": "ISC",
   "dependencies": {
     "npm-run-all": "^2.1.0"
   }

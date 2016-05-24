@@ -9,7 +9,6 @@
     "start": "node ./server.js"
   },
   "author": "zhenchao.chen",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^0.8.6",
     "bcryptjs": "^2.3.0",
