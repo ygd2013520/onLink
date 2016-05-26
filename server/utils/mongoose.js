@@ -16,8 +16,6 @@ function loadModels() {
 function init(callback) {
   loadModels();
 
-  //db = mongoose.createConnection();
-  //db.open(config.db.uri, {server: config.db.options});
   mongoose.connect(config.db.uri, {server: config.db.options});
   db = mongoose.connection;
 
@@ -27,9 +25,6 @@ function init(callback) {
   db.on('disconnected', function() {
     console.log('\nDisconnected from MongoDB: ' + config.db.uri);
     console.log('Retry connecting to MongoDB: ' + config.db.uri);
-    setTimeout(function(){
-      db.open(config.db.uri, {server: config.db.options});
-    },config.db.reconnectInterval);
   });
   db.on('connected', function() {
     console.log('\nConnected to MongoDB: ' + config.db.uri);

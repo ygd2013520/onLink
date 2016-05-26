@@ -4,6 +4,7 @@ var config = require('../config'),
     express = require('./express');
 
 function init(callback) {
+  console.log("Prepare to start the server:\nPlease make sure both mongodb and rabbitmq server are running.");
   mongoose.init(function(db) {
     rpcClient.init();
     var app = express.init(db);

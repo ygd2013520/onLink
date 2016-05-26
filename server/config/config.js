@@ -10,7 +10,7 @@ function initConfig () {
   config.db = {
     uri: 'mongodb://localhost:27017/test',
     options: {
-      auto_reconnect: false, //control the reconnect in mongoose.js
+      auto_reconnect: true, //control the reconnect in mongoose.js
       poolSize: 100,
       server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
       replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } }
@@ -23,7 +23,8 @@ function initConfig () {
   }
 
   config.ampq = {
-    uri: "amqp://localhost"
+    uri: "amqp://localhost",
+    REQ_TIMEOUT : 10000
   };
 
   // files
