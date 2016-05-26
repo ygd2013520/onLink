@@ -17,7 +17,7 @@ import {Pork} from '../pork/pork';
 })
 
 @RouteConfig([
-  {path: '/', component: Home, name: 'Home' },
+  {path: '/', component: Home, name: 'Home'},
   {path: '/beef', component: Beef, name: 'Beef'},
   {path: '/pork', component: Pork, name: 'Pork'}
 ])

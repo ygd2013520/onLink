@@ -22,6 +22,10 @@ function initConfig () {
     config.db.uri = process.env.MONGODB_URI;
   }
 
+  config.ampq = {
+    uri: "amqp://localhost"
+  };
+
   // files
   config.files = { };
   config.files.models = [

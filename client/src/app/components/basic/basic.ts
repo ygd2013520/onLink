@@ -12,7 +12,7 @@ import {Input} from '@angular/core';
 })
 
 export class Basic {
-    @Input('parentValue') private value1 : string = '109';
+    @Input('parentValue') private value1 : string = 'default string';
     value2Emitter = new EventEmitter<string>();
 
     onValue2Change(value: string) {

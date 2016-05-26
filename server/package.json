@@ -13,6 +13,7 @@
   },
   "author": "zhenchao.chen",
   "dependencies": {
+    "amqplib": "^0.4.1",
     "bcrypt": "^0.8.6",
     "bcryptjs": "^2.3.0",
     "body-parser": "~1.13.2",
@@ -23,6 +24,7 @@
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "guid": "0.0.12",
     "mongoose": "^4.4.10",
     "morgan": "~1.6.1",
     "nodemailer": "^2.3.2",
@@ -32,6 +34,5 @@
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
