@@ -1,0 +1,21 @@
+{
+  "name": "onLink",
+  "version": "0.5.1",
+  "engines": {
+    "node": "6.x"
+  },
+  "description": "onLink",
+  "main": "index.js",
+  "scripts": {
+    "start": "node startAll.js",
+    "watch": "node startAll.js",
+    "postinstall": "pip install pika"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "zhenchao.chen",
+  "dependencies": {
+    "shelljs": "0.7.0"
+  }
+}
