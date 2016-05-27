@@ -11,7 +11,7 @@ function puts(error, stdout, stderr) {
   }
 }
 
-// define all your service routines here: python, ruby, java, c, c++, etc
+// define all your service routines here: Python, Ruby, Java, C, C++, Perl, Lua, etc.
 var tasks = [
   function() { exec("ls", puts); },
   function() { exec("ls", puts); },
