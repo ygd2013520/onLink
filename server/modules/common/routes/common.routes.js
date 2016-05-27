@@ -23,4 +23,8 @@ module.exports = function(app) {
 
   app.route('/api/user')
       .get(common.authenticateAPI, common.getUserInfo);
+
+  app.route('/api/storage/*')
+    .get(common.authenticateAPI, common.handleApi)
+    .post(common.authenticateAPI, common.handleApi);
 };

@@ -1,6 +1,8 @@
 var passport = require('passport'),
     User = require('mongoose').model('User');
 
+var mqClient = require('../../../utils/rabbitRpcClient');
+
 
 
 function renderIndex(req, res) {
@@ -88,6 +90,34 @@ function getUserInfo(req, res) {
   res.json(req.user);
 }
 
+function mqClientRequest(req, res) {
+  var paths = req.path.split('/');
+  var action = paths.pop();
+  var key = paths.pop();
+
+  var msgContent = {
+    action: action,
+    content: req.body
+  };
+  console.log(paths);
+  console.log(msgContent);
+
+  mqClient.makeRequest(key,msgContent,function(err,result){
+    if (err) {
+      res.status = 500;
+      res.json({"error": "Internal Server Error. Please try again later."})
+    } else {
+      res.status = result.status;
+      res.json(result.content);
+    }
+  });
+}
+
+function handleApi(req, res) {
+  //TODO: error check
+  mqClientRequest(req, res);
+}
+
 module.exports.renderIndex = renderIndex;
 module.exports.renderSignup = renderSignup;
 module.exports.signup = signup;
@@ -99,3 +129,4 @@ module.exports.render404Error = render404Error;
 
 module.exports.authenticateAPI = authenticateAPI;
 module.exports.getUserInfo = getUserInfo;
+module.exports.handleApi = handleApi;
