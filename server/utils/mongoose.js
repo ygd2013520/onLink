@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose'),
     path = require('path'),
-    config = require('../config/config');
+    config = require('../config');
 
 var db;
 var isConnectedBefore = false;

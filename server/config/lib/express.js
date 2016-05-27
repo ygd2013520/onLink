@@ -8,7 +8,7 @@ var bodyParser = require('body-parser'),
     mongoStore = require('connect-mongo')(expressSession),
     flash = require('connect-flash');
 
-var config = require('../config');
+var config = require('../../config');
 
 function initLocalVariables(app) {
 

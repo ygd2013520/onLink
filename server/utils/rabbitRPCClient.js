@@ -1,6 +1,6 @@
 var amqp = require('amqplib/callback_api');
 var guid = require('guid');
-var config = require('../config/config');
+var config = require('../config');
 
 var amqpCh;
 var ex = 'service';

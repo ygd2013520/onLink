@@ -1,22 +1,21 @@
 var exec = require('child_process').exec;
 var async = require('async');
+var config = require('./config');
 
 function puts(error, stdout, stderr) {
   if (error) {
-    console.error('exec error: ' + error);
+    console.error(error);
   } else if(stderr) {
-    console.error('stderr: ' + stderr);
+    console.error(stderr);
   } else {
-    console.log('stdout: ' + stdout);
+    console.log(stdout);
   }
 }
 
-// define all your service routines here: Python, Ruby, Java, C, C++, Perl, Lua, etc.
-var tasks = [
-  function() { exec("ls", puts); },
-  function() { exec("ls", puts); },
-  function() { exec("ls -la", puts); },
-];
+var tasks = [];
+config.tasks.forEach(function(each){
+  tasks.push(function() { exec(each, puts); });
+});
 
 async.parallel(tasks, function(err, results){
   if(err){
