@@ -6,4 +6,4 @@ Dependencies:
 
 2. rabbitMQ server running at local 
 
-3. Python installed at localhost
+3. Both Python and pip installed at localhost
