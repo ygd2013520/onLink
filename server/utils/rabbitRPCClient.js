@@ -33,7 +33,7 @@ function init(callback) {
 
               clearTimeout(entry.timeout);
 
-              entry.callback(res);
+              entry.callback(null, res);
               delete cbMap[correlationId];
             }
             amqpCh.ack(msg); //silently drop if not match, could be duplicate due to server reboot
@@ -45,7 +45,7 @@ function init(callback) {
   }
 }
 
-function makeRequest(key, req, callback) {
+function makeRequest(key, msg, callback) {
   var correlationId = guid.raw();
 
   var tId = setTimeout(function(corr_id){
@@ -60,7 +60,7 @@ function makeRequest(key, req, callback) {
   cbMap[correlationId] = entry;
   amqpCh.publish(ex,
       key,
-      new Buffer(JSON.stringify(trimReq(req))),
+      new Buffer(JSON.stringify(msg)),
       {
         persistent: true,
         content_type: 'application/json',
@@ -68,12 +68,6 @@ function makeRequest(key, req, callback) {
         correlationId: correlationId
       }
   );
-}
-
-function trimReq(req) {
-  var reqTrim = {};
-  reqTrim.body = req.body;
-  return reqTrim;
 }
 
 module.exports.init = init;
