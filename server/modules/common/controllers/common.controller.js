@@ -3,8 +3,6 @@ var passport = require('passport'),
 
 var mqClient = require('../../../utils/rabbit-rpc-client');
 
-
-
 function renderIndex(req, res) {
   if(req.user) {
     res.render('../../client/src/index');
