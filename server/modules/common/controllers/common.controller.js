@@ -1,7 +1,7 @@
 var passport = require('passport'),
     User = require('mongoose').model('User');
 
-var mqClient = require('../../../utils/rabbitRpcClient');
+var mqClient = require('../../../utils/rabbit-rpc-client');
 
 
 
