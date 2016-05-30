@@ -97,8 +97,6 @@ function mqClientRequest(req, res) {
     action: action,
     content: req.body
   };
-  console.log(paths);
-  console.log(msgContent);
 
   mqClient.makeRequest(key,msgContent,function(err,result){
     if (err) {
