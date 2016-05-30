@@ -1,6 +1,6 @@
 var config = require('../../config'),
     mongoose = require('./../../utils/mongoose'),
-    rpcClient = require('./../../utils/rabbitRpcClient'),
+    rpcClient = require('./../../utils/rabbit-rpc-client'),
     express = require('./express');
 
 function init(callback) {
