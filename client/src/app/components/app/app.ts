@@ -4,8 +4,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated
 import {Config} from 'app/config';
 import {TreeView} from '../tree-view/tree-view';
 import {Home} from '../home/home';
-import {Beef} from '../beef/beef';
-import {Pork} from '../pork/pork';
+import {HelloWorld} from '../hello-world/hello-world';
 import {Angular2Table} from '../angular2-table/angular2-table';
 import {BootstrapComp} from '../bootstrap-comp/bootstrap-comp';
 
@@ -20,8 +19,7 @@ import {BootstrapComp} from '../bootstrap-comp/bootstrap-comp';
 
 @RouteConfig([
   {path: '/', component: Home, name: 'Home'},
-  {path: '/beef', component: Beef, name: 'Beef'},
-  {path: '/pork', component: Pork, name: 'Pork'},
+  {path: '/helloWorld', component: HelloWorld, name: 'HelloWorld'},
   {path: '/angular2Table', component: Angular2Table, name: 'Angular2Table'},
   {path: '/bootstrapComp', component: BootstrapComp, name: 'BootstrapComp'}
 ])

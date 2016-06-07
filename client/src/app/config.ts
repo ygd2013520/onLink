@@ -8,17 +8,11 @@ export class Config {
       name: 'Root',
       children: [
         {
-          name: 'Meat',
-          children: [
-            {name: 'Beef'},
-            {name: 'Pork'},
-          ]
-        },
-        {
           name: 'DemoComponents',
           children: [
             {name: 'Angular2Table'},
             {name: 'BootstrapComp'},
+            {name: 'HelloWorld'},
           ]
         },
         {
