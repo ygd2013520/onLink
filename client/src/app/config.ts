@@ -15,6 +15,13 @@ export class Config {
           ]
         },
         {
+          name: 'DemoComponents',
+          children: [
+            {name: 'Angular2Table'},
+            {name: 'BootstrapComp'},
+          ]
+        },
+        {
           name: 'Seafood',
           children: [
             {

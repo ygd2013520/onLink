@@ -24,6 +24,7 @@ var webpackConfig = {
       { test: /\.ts$/, loader: 'awesome-typescript-loader' },
       {test: /\.html$/, loader: 'raw'},
       {test: /\.css$/, loader: 'raw'},
+      {test: /\.json$/, loader: 'raw'},
       {test: /\.scss$/, loader: 'raw!sass'},
 
     ]

@@ -6,6 +6,8 @@ import {TreeView} from '../tree-view/tree-view';
 import {Home} from '../home/home';
 import {Beef} from '../beef/beef';
 import {Pork} from '../pork/pork';
+import {Angular2Table} from '../angular2-table/angular2-table';
+import {BootstrapComp} from '../bootstrap-comp/bootstrap-comp';
 
 @Component({
   selector: 'app',
@@ -19,7 +21,9 @@ import {Pork} from '../pork/pork';
 @RouteConfig([
   {path: '/', component: Home, name: 'Home'},
   {path: '/beef', component: Beef, name: 'Beef'},
-  {path: '/pork', component: Pork, name: 'Pork'}
+  {path: '/pork', component: Pork, name: 'Pork'},
+  {path: '/angular2Table', component: Angular2Table, name: 'Angular2Table'},
+  {path: '/bootstrapComp', component: BootstrapComp, name: 'BootstrapComp'}
 ])
 
 export class App {
