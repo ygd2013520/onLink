@@ -10,9 +10,10 @@ export class Config {
         {
           name: 'DemoComponents',
           children: [
+            {name: 'HelloWorld'},
             {name: 'Angular2Table'},
             {name: 'BootstrapComp'},
-            {name: 'HelloWorld'},
+            //{name: 'NgChart'},
           ]
         },
         {
