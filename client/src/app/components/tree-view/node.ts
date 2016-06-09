@@ -4,6 +4,7 @@ export class Node {
   expanded = false;
 
   constructor(public name:string,
+              public depth: number,
               public directories:Array<Node>) {
   }
 
@@ -11,10 +12,8 @@ export class Node {
     this.expanded = !this.expanded;
   }
 
-  getIcon() {
-    if (this.expanded) {
-      return '-';
-    }
-    return '+';
+  // choose to return an array instead of this.depth, because angular2 *ngFor support array only
+  getDepthArray() {
+    return new Array(Math.max(this.depth, 0));
   }
 }

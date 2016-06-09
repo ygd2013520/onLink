@@ -17,17 +17,17 @@ export class TreeView {
   constructor() {
   }
 
-  parseNode(json):Node {
-    var node = new Node(json.name, []);
+  parseNode(json, depth):Node {
+    var node = new Node(json.name, depth, []);
     if ('children' in json) {
       for (let i = 0; i < json.children.length; i++) {
-        node.directories.push(this.parseNode(json.children[i]));
+        node.directories.push(this.parseNode(json.children[i], depth + 1));
       }
     }
     return node;
   };
 
   ngOnInit() {
-    this.node = this.parseNode(this.nodeJSON);
+    this.node = this.parseNode(this.nodeJSON, -1);
   }
 }

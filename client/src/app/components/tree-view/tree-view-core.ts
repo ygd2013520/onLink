@@ -6,21 +6,27 @@ import {Node} from './node';
 @Component({
   selector: 'tree-view-core',
   template: `
-    <ul>
-    <li *ngFor="let dir of directories">
+    <div *ngFor="let dir of directories">
       <div *ngIf="dir.directories.length != 0">
-        <span class="iconButton" (click)="dir.toggle()">{{dir.getIcon()}}</span>
-        <a class="iconButton" (click)="dir.toggle()"> {{ dir.name }} </a>
+
+        <button type="button" class="btn btn-default btn-block" (click)="dir.toggle()">
+          <span *ngFor="let i of dir.getDepthArray()"  class="pull-left" style="white-space: pre">    </span>
+          <span class="pull-left"> {{ dir.name }} </span>
+          <span class="glyphicon {{ dir.expanded ? 'glyphicon-minus' : 'glyphicon-plus'}} pull-right" aria-hidden="true"></span>
+        </button>
+
         <div *ngIf="dir.expanded">
           <tree-view-core [directories]="dir.directories"></tree-view-core>
         </div>
       </div>
 
       <div *ngIf="dir.directories.length == 0">
-        <a (click)="sel_file(dir.name)">{{dir.name}}</a>
+        <button type="button" class="btn btn-default btn-block" (click)="sel_file(dir.name)">
+          <span *ngFor="let i of dir.getDepthArray()"  class="pull-left" style="white-space: pre">    </span>
+          <span class="pull-left"> {{ dir.name }} </span>
+        </button>
       </div>
-    </li>
-    </ul>
+    </div>
    `,
   directives: [TreeViewCore]
 })
