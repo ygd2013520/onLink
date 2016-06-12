@@ -9,23 +9,23 @@ var cbMap = {};
 
 //TODO: handle error case;
 function init(callback) {
-  if(amqpCh) {
-    if(callback)callback();
+  if (amqpCh) {
+    if (callback)callback();
   } else {
-    amqp.connect(config.ampq.uri, function(err,conn) {
-      if(err)console.log(err);
+    amqp.connect(config.ampq.uri, function (err, conn) {
+      if (err)console.log(err);
       else {
         console.log("Connected to rabbitMQ: " + config.ampq.uri);
       }
-      conn.createChannel(function(err,ch){
+      conn.createChannel(function (err, ch) {
         amqpCh = ch;
         //request exchange: can have multiple queue
         amqpCh.assertExchange(ex, 'topic', {durable: true});
 
         //response queue: only one queue
-        ch.assertQueue('', {exclusive: true}, function(err, q) {
+        ch.assertQueue('', {exclusive: true}, function (err, q) {
           replyQueue = q.queue;
-          amqpCh.consume(replyQueue, function(msg) {
+          amqpCh.consume(replyQueue, function (msg) {
             var correlationId = msg.properties.correlationId;
             if (correlationId in cbMap) {
               var res = JSON.parse(msg.content);
@@ -38,7 +38,7 @@ function init(callback) {
             }
             amqpCh.ack(msg); //silently drop if not match, could be duplicate due to server reboot
           });
-          if(callback)callback();
+          if (callback)callback();
         });
       });
     });
@@ -48,25 +48,25 @@ function init(callback) {
 function makeRequest(key, msg, callback) {
   var correlationId = guid.raw();
 
-  var tId = setTimeout(function(corr_id){
-    callback(new Error("Timeout waiting for rpc response: " + "key:"  + key + " correlation id:" + corr_id));
+  var tId = setTimeout(function (corr_id) {
+    callback(new Error("Timeout waiting for rpc response: " + "key:" + key + " correlation id:" + corr_id));
     delete cbMap[corr_id];
   }, config.ampq.REQ_TIMEOUT, correlationId);
 
   var entry = {
-    callback:callback,
+    callback: callback,
     timeout: tId //the id for the timeout so we can clear it later
   };
   cbMap[correlationId] = entry;
   amqpCh.publish(ex,
-      key,
-      new Buffer(JSON.stringify(msg)),
-      {
-        persistent: true,
-        content_type: 'application/json',
-        replyTo: replyQueue,
-        correlationId: correlationId
-      }
+    key,
+    new Buffer(JSON.stringify(msg)),
+    {
+      persistent: true,
+      content_type: 'application/json',
+      replyTo: replyQueue,
+      correlationId: correlationId
+    }
   );
 }
 
