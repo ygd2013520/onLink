@@ -2,7 +2,7 @@ var amqp = require('amqplib/callback_api');
 var system = require('./system/osi');
 var basename = require('path').basename;
 
-listenKeys = ['disks'];
+listenKeys = ['storage'];
 ex = 'service';
 
 console.log("tttt");

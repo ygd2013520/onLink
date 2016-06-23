@@ -17,20 +17,49 @@ export class Config {
           ]
         },
         {
-          name: 'Seafood',
+          name: '存储',
           children: [
             {
-              name: 'Shell',
-              children: [
-                {name: 'Ag-grid'},
-                {name: 'Line-chart'},
+              name: '磁盘',
+            },
+            {
+              name: '池',
+            },
+            {
+              name: 'iSCSI',
+            },
+            {
+              name:'共享',
+            },
+            {
+              name:'快照',
+            },
+            {
+              name:'备份',
+              children:[
+                {
+                  name:'发送',
+                },
+                {
+                  name:'接收',
+                }
               ]
             },
             {
-              name: 'Fish',
-              children: [
-                {name: 'Data-table'},
-                {name: 'Dialog-box'},
+              name:'文件共享服务',
+              children:[
+                {
+                  name:'NFS',
+                },
+                {
+                  name:'Samba',
+                },
+                {
+                  name:'SFTP',
+                },
+                {
+                  name:'AFP',
+                }
               ]
             }
           ]

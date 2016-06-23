@@ -1,13 +1,10 @@
 import pika
 import json
-from fs.btrfs import (scan_disks, wipe_disk, blink_disk, enable_quota,
-											btrfs_uuid, pool_usage, mount_root, get_pool_info,
-											pool_raid, enable_quota)
 
-MIN_DISK_SIZE = 1024 * 1024
+from action import btrfs_disk_scan,btrfs_disk_wipe,btrfs_disk_import
 
-listenKeys = ['storage'];
-ex = 'service';
+listenKeys = ['disks']
+ex = 'service'
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(
 	host='localhost'))
@@ -29,17 +26,17 @@ print(' [*] Waiting for logs. To exit press CTRL+C')
 
 
 def callback(ch, method, properties, body):
-	print(" [x] %r:%r:%r" % (method.routing_key, properties, body));
-	bodyJson = json.loads(bytes.decode(body));
+	print(" [x] %r:%r:%r" % (method.routing_key, properties, body))
+	bodyJson = json.loads(bytes.decode(body))
 
-	data = scan_disks(MIN_DISK_SIZE);
-	response = {};
-	response['status'] = 200;
+	data = btrfs_disk_scan()
+	response = {}
+	response['status'] = 200
 	# response['content'] = bodyJson;
 	if (method.routing_key == "disks"):
-		response['content'] = data;
+		response['content'] = data
 	else:
-		response['content'] = bodyJson;
+		response['content'] = bodyJson
 
 	ch.basic_publish(exchange='',
 									 routing_key=properties.reply_to,
@@ -51,7 +48,7 @@ def callback(ch, method, properties, body):
 	ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
-channel.basic_qos(prefetch_count=1);
+channel.basic_qos(prefetch_count=1)
 channel.basic_consume(callback, queue=queue_name, no_ack=False)
 
 channel.start_consuming()

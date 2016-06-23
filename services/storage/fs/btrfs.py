@@ -46,7 +46,7 @@ DD = '/bin/dd'
 DEFAULT_MNT_DIR = '/mnt2/'
 RMDIR = '/bin/rmdir'
 WIPEFS = '/usr/sbin/wipefs'
-QID = '2015'
+QID = '2016'
 
 Disk = collections.namedtuple('Disk',
 															'name model serial size transport vendor '
@@ -58,8 +58,8 @@ def add_pool(pool, disks):
 	pool is a btrfs filesystem.
 	"""
 	disks_fp = ['/dev/' + d for d in disks]
-	cmd = [MKFS_BTRFS, '-f', '-d', pool.raid, '-m', pool.raid, '-L',
-				 pool.name, ]
+	cmd = [MKFS_BTRFS, '-f', '-d', pool["raid"], '-m',pool["raid"], '-L',
+				 pool["name"], ]
 	cmd.extend(disks_fp)
 	out, err, rc = run_command(cmd)
 	enable_quota(pool)
@@ -126,18 +126,18 @@ def resize_pool(pool, dev_list, add=True):
 # Try mounting by-label first. If that is not possible, mount using every device
 # in the set, one by one until success.
 def mount_root(pool):
-	root_pool_mnt = DEFAULT_MNT_DIR + pool.name
-	if (is_share_mounted(pool.name)):
+	root_pool_mnt = DEFAULT_MNT_DIR + pool["name"]
+	if (is_share_mounted(pool["name"])):
 		return root_pool_mnt
 	create_tmp_dir(root_pool_mnt)
-	mnt_device = '/dev/disk/by-label/%s' % pool.name
+	mnt_device = '/dev/disk/by-label/%s' % pool["name"]
 	mnt_cmd = [MOUNT, mnt_device, root_pool_mnt, ]
 	mnt_options = ''
-	if (pool.mnt_options is not None):
-		mnt_options = pool.mnt_options
-	if (pool.compression is not None):
+	if (pool["mnt_options"] is not None):
+		mnt_options = pool["mnt_options"]
+	if (pool["compression"] is not None):
 		if (re.search('compress', mnt_options) is None):
-			mnt_options = ('%s,compress=%s' % (mnt_options, pool.compression))
+			mnt_options = ('%s,compress=%s' % (mnt_options, pool["compression"]))
 	if (os.path.exists(mnt_device)):
 		if (len(mnt_options) > 0):
 			mnt_cmd.extend(['-o', mnt_options])
@@ -146,11 +146,12 @@ def mount_root(pool):
 
 	# If we cannot mount by-label, let's try mounting by device one by one
 	# until we get our first success.
-	if (pool.disk_set.count() < 1):
-		raise Exception('Cannot mount Pool(%s) as it has no disks in it.' % pool.name)
-	last_device = pool.disk_set.last()
-	for device in pool.disk_set.all():
-		mnt_device = ('/dev/%s' % device.name)
+	# ==============================================================================#
+	if (len(pool["disks"]) < 1):
+		raise Exception('Cannot mount Pool(%s) as it has no disks in it.' % pool["name"])
+	last_device = pool["disks"][-1]
+	for device in pool["disks"]:
+		mnt_device = ('/dev/%s' % device["name"])
 		if (os.path.exists(mnt_device)):
 			mnt_cmd = [MOUNT, mnt_device, root_pool_mnt, ]
 			if (len(mnt_options) > 0):
@@ -159,12 +160,12 @@ def mount_root(pool):
 				run_command(mnt_cmd)
 				return root_pool_mnt
 			except Exception, e:
-				if (device.name == last_device.name):
+				if (device["name"] == last_device["name"]):
 					# exhausted mounting using all devices in the pool
 					raise e
 				logger.error('Error mouting: %s. Will try using another device.' % mnt_cmd)
 				logger.exception(e)
-	raise Exception('Failed to mount Pool(%s) due to an unknown reason.' % pool.name)
+	raise Exception('Failed to mount Pool(%s) due to an unknown reason.' % pool["name"])
 
 
 def umount_root(root_pool_mnt):
@@ -233,9 +234,9 @@ def add_share(pool, share_name, qid):
 def mount_share(share, mnt_pt):
 	if (is_mounted(mnt_pt)):
 		return
-	mount_root(share.pool)
-	pool_device = ('/dev/%s' % share.pool.disk_set.first().name)
-	subvol_str = 'subvol=%s' % share.subvol_name
+	mount_root(share["pool"])
+	pool_device = ('/dev/%s' % share["pool"]["disks"][0]["name"])
+	subvol_str = 'subvol=%s' % share["subvol_name"]
 	create_tmp_dir(mnt_pt)
 	mnt_cmd = [MOUNT, '-t', 'btrfs', '-o', subvol_str, pool_device, mnt_pt]
 	return run_command(mnt_cmd)
@@ -434,7 +435,7 @@ def remove_share(pool, share_name, pqgroup, force=False):
 	qgroup = ('0/%s' % share_id(pool, share_name))
 	delete_cmd = [BTRFS, 'subvolume', 'delete', subvol_mnt_pt]
 	run_command(delete_cmd, log=True)
-	qgroup_destroy(qgroup, root_pool_mnt)
+	# qgroup_destroy(qgroup, root_pool_mnt)
 	return qgroup_destroy(pqgroup, root_pool_mnt)
 
 
@@ -550,6 +551,13 @@ def qgroup_max(mnt_pt):
 				res = cid
 	return res
 
+
+def qgroup_info(pool):
+	# mount pool
+	mnt_pt = mount_root(pool)
+	# qid = ('%s/%d' % (QID, qgroup_max(mnt_pt) + 1))
+	o, e, rc = run_command([BTRFS, 'qgroup', 'show', mnt_pt])
+	return o
 
 def qgroup_create(pool):
 	# mount pool
@@ -858,6 +866,9 @@ def scan_disks(min_size):
 	:return: List containing drives of interest
 	"""
 	base_root_disk = root_disk()
+	# print base_root_disk
+	if base_root_disk is None:
+		base_root_disk = "Null"
 	cmd = ['/usr/bin/lsblk', '-P', '-o',
 				 'NAME,MODEL,SERIAL,SIZE,TRAN,VENDOR,HCTL,TYPE,FSTYPE,LABEL,UUID']
 	o, e, rc = run_command(cmd)
