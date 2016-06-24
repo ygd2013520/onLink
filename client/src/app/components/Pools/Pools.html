@@ -1,0 +1,58 @@
+<h3>Pools</h3>
+<br/>
+<div class="panel panel-default">
+  <!--<div class="panel-heading">User information</div>-->
+
+  <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <!--<th style="width: 10%"></th>-->
+      <th style="width: 10%">
+        <mfDefaultSorter by="name">名字</mfDefaultSorter>
+      </th>
+      <th style="width: 20%">
+        <mfDefaultSorter by="size">大小</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="usage">使用率</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="raid">Raid</mfDefaultSorter>
+      </th>
+      <th style="width: 20%">
+        <mfDefaultSorter by="compression">压缩</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="mnt_options">额外安装操作</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="disks">硬盘</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="reclaimable">操作</mfDefaultSorter>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of mf.data">
+      <!--<td>-->
+      <!--</td>-->
+      <td class="text-left">{{item.name}}</td>
+      <td>{{item.size}}</td>
+      <td>{{item.usage}}</td>
+      <td>{{item.raid}}</td>
+      <td>{{item.compression}}</td>
+      <td>{{item.mnt_options}}</td>
+      <td>{{item.disks}}</td>
+      <td>{{item.reclaimable}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="5">
+        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

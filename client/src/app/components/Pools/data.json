@@ -1,0 +1,35 @@
+[
+  {
+    "raid": "single",
+    "name": "sagestor",
+    "reclaimable": 0,
+    "disks": [{"smart_enabled": false, "parted": false, "btrfs_uuid": "d7eed448-e567-486b-81b4-0bb3591cfe9a", "vendor": "VMware,", "name": "sda3", "serial": "fake-serial-b5f0af5d-b249-4593-952c-3670fb8f2bc9", "smart_available": false, "role": "root", "pool": "rockstor_rockstor", "offline": false, "model": "VMware Virtual S", "transport": "spi", "size": 18350080}],
+    "uuid": "d7eed448-e567-486b-81b4-0bb3591cfe9a", 
+    "free": 15683912.0, 
+    "mnt_options": null, 
+    "role": "root", 
+    "size": 18361344.0
+  },
+  {
+    "raid": "single", 
+    "name": "1", 
+    "reclaimable": 0, 
+    "disks": [{"smart_enabled": false, "parted": false, "btrfs_uuid": "e1b4e781-6758-4ac2-981d-2b337b0d650d", "vendor": "VMware,", "name": "sdb", "serial": "fake-serial-c61e7e0b-d4f7-4544-ac7c-5fe0e3feb851", "smart_available": false, "role": null, "pool": "1", "offline": false, "model": "VMware Virtual S", "transport": "spi", "size": 5242880}],
+    "uuid": "e1b4e781-6758-4ac2-981d-2b337b0d650d",
+    "free": 5242656.0,
+    "mnt_options": null,
+    "role": null,
+    "size": 5242880.0
+  },
+  {
+    "raid": "single",
+    "name": "sdc",
+    "reclaimable": 0,
+    "disks": [{"smart_enabled": false, "parted": false, "btrfs_uuid": "a956030c-9a9b-4db8-ae0d-17d7e8b10a45", "vendor": "VMware,", "name": "sdc", "serial": "fake-serial-c5551a07-d901-43a6-9735-642380083463", "smart_available": false, "role": null, "pool": "sdc", "offline": false, "model": "VMware Virtual S", "transport": "spi", "size": 5242880}],
+    "uuid": "a956030c-9a9b-4db8-ae0d-17d7e8b10a45",
+    "free": 5242672.0,
+    "mnt_options": null,
+    "role": null,
+    "size": 5242880.0
+  }
+]

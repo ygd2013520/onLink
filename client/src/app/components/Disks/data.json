@@ -1,0 +1,32 @@
+[
+   {
+     "smart_enabled": false,
+     "parted": false,
+     "btrfs_uuid": "e1b4e781-6758-4ac2-981d-2b337b0d650d",
+     "vendor": "VMware,",
+     "name": "sdb",
+     "serial": "fake-serial-ad2c9d06-4cb2-4263-9ead-f841ec9ccd9c",
+     "smart_available": false,
+     "role": null,
+     "pool": "1",
+     "offline": false,
+     "model": "VMware Virtual S",
+     "transport": "spi",
+     "size": 5242880
+   },
+  {
+    "smart_enabled": false,
+    "parted": false,
+    "btrfs_uuid": "a956030c-9a9b-4db8-ae0d-17d7e8b10a45",
+    "vendor": "VMware,",
+    "name": "sdc",
+    "serial": "fake-serial-8250e928-7182-47ae-991b-e21abf0829b1",
+    "smart_available": false,
+    "role": null,
+    "pool": "sdc",
+    "offline": false,
+    "model": "VMware Virtual S",
+    "transport": "spi",
+    "size": 5242880
+  }
+]

@@ -19,47 +19,25 @@ export class Config {
         {
           name: '存储',
           children: [
-            {
-              name: '磁盘',
-            },
-            {
-              name: '池',
-            },
-            {
-              name: 'iSCSI',
-            },
-            {
-              name:'共享',
-            },
-            {
-              name:'快照',
-            },
+            {name: 'Disks'},
+            {name: 'Pools'},
+            {name: 'iSCSI'},
+            {name:'共享'},
+            {name:'快照'},
             {
               name:'备份',
               children:[
-                {
-                  name:'发送',
-                },
-                {
-                  name:'接收',
-                }
+                {name:'发送'},
+                {name:'接收'}
               ]
             },
             {
               name:'文件共享服务',
               children:[
-                {
-                  name:'NFS',
-                },
-                {
-                  name:'Samba',
-                },
-                {
-                  name:'SFTP',
-                },
-                {
-                  name:'AFP',
-                }
+                {name:'NFS'},
+                {name:'Samba'},
+                {name:'SFTP'},
+                {name:'AFP'}
               ]
             }
           ]

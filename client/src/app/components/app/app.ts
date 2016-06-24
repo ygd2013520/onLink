@@ -7,7 +7,9 @@ import {Home} from '../home/home';
 import {HelloWorld} from '../hello-world/hello-world';
 import {Angular2Table} from '../angular2-table/angular2-table';
 import {BootstrapComp} from '../bootstrap-comp/bootstrap-comp';
-import {NgChart} from '../ng-chart/ng-chart';
+//import {NgChart} from '../ng-chart/ng-chart';
+import {Disks} from '../Disks/Disks';
+import {Pools} from '../Pools/Pools';
 
 @Component({
   selector: 'app',
@@ -23,7 +25,9 @@ import {NgChart} from '../ng-chart/ng-chart';
   {path: '/helloWorld', component: HelloWorld, name: 'HelloWorld'},
   {path: '/angular2Table', component: Angular2Table, name: 'Angular2Table'},
   {path: '/bootstrapComp', component: BootstrapComp, name: 'BootstrapComp'},
-  {path: '/ngChart', component: NgChart, name: 'NgChart'}
+  //{path: '/ngChart', component: NgChart, name: 'NgChart'},
+  {path: '/Disks', component: Disks, name: 'Disks'},
+  {path: '/Pools', component: Pools, name: 'Pools'},
 ])
 
 export class App {
