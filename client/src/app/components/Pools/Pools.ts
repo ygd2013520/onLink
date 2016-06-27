@@ -14,6 +14,13 @@ export class Pools {
 
     constructor(private http:Http) {
         this.data = JSON.parse(require('./data.json'));
+        console.log('test http get');
+        http.get('http://localhost:3000/api/pools/scan')
+            .map(res => res.json())
+            .subscribe(
+                data => this.data = data,
+            () => console.log('Complete')
+        );
     }
 
     private sortByWordLength = (a:any) => {

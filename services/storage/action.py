@@ -170,6 +170,7 @@ def btrfs_share_scan():
 			shares.append(share)
 	return shares
 
+
 def btrfs_add_share(share):
 	pools = btrfs_pool_scan()
 	share_s = {}
@@ -191,6 +192,7 @@ def btrfs_add_share(share):
 			share_s["compression_algo"] = share["compression"]
 			mount_share(share_s, mnt_pt)
 	return share_s
+
 
 def btrfs_rem_share(sname, command=''):
 	force = True if (command == 'force') else False

@@ -32,4 +32,15 @@ module.exports = function (app) {
     .get(common.authenticateAPI, common.handleApi)
     .post(common.authenticateAPI, common.handleApi);
 
+  app.route('/api/pools/*')
+    .get(common.authenticateAPI, common.handleApi)
+    .post(common.authenticateAPI, common.handleApi);
+
+  app.route('/api/shares/*')
+    .get(common.authenticateAPI, common.handleApi)
+    .post(common.authenticateAPI, common.handleApi);
+
+  app.route('/api/snapshots/*')
+    .get(common.authenticateAPI, common.handleApi)
+    .post(common.authenticateAPI, common.handleApi);
 };
