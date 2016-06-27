@@ -18,7 +18,7 @@ export class TreeView {
   }
 
   parseNode(json, depth):Node {
-    var node = new Node(json.name, depth, []);
+    var node = new Node(json.name, json.display, depth, []);
     if ('children' in json) {
       for (let i = 0; i < json.children.length; i++) {
         node.directories.push(this.parseNode(json.children[i], depth + 1));

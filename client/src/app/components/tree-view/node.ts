@@ -4,6 +4,7 @@ export class Node {
   expanded = false;
 
   constructor(public name:string,
+              public display: string,
               public depth: number,
               public directories:Array<Node>) {
   }

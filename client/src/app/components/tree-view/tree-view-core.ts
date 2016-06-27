@@ -11,7 +11,7 @@ import {Node} from './node';
 
         <button type="button" class="btn btn-default btn-block" (click)="dir.toggle()">
           <span *ngFor="let i of dir.getDepthArray()"  class="pull-left" style="white-space: pre">    </span>
-          <span class="pull-left"> {{ dir.name }} </span>
+          <span class="pull-left"> {{ dir.display || dir.name }} </span>
           <span class="glyphicon {{ dir.expanded ? 'glyphicon-minus' : 'glyphicon-plus'}} pull-right" aria-hidden="true"></span>
         </button>
 
@@ -23,7 +23,7 @@ import {Node} from './node';
       <div *ngIf="dir.directories.length == 0">
         <button type="button" class="btn btn-default btn-block" (click)="sel_file(dir.name)">
           <span *ngFor="let i of dir.getDepthArray()"  class="pull-left" style="white-space: pre">    </span>
-          <span class="pull-left"> {{ dir.name }} </span>
+          <span class="pull-left"> {{ dir.display || dir.name }} </span>
         </button>
       </div>
     </div>

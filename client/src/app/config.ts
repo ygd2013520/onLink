@@ -10,7 +10,7 @@ export class Config {
         {
           name: 'DemoComponents',
           children: [
-            {name: 'HelloWorld'},
+            {name: 'HelloWorld', display: '欢迎'},
             {name: 'Angular2Table'},
             {name: 'BootstrapComp'},
             //{name: 'NgChart'},
@@ -19,8 +19,8 @@ export class Config {
         {
           name: '存储',
           children: [
-            {name: 'Disks'},
-            {name: 'Pools'},
+            {name: 'Disks', display: '硬盘'},
+            {name: 'Pools', display: '池'},
             {name: 'iSCSI'},
             {name:'共享'},
             {name:'快照'},
